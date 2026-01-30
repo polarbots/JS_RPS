@@ -1,11 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
-
-console.log(computerSelection);
-playRound(computerSelection, humanSelection);
+playGame()
 
 function getComputerChoice() {
     // Set compVal to a random number between 0 to 1
@@ -92,5 +88,20 @@ function playRound(computerChoice, humanChoice) {
             computerScore += 1;
         }   
     }
+}
 
+function playGame() {
+    // Setup a for loop from 1 to 5
+    for (let i = 0; i < 5; i++) {
+        playRound(getComputerChoice(), getHumanChoice());
+    }
+    // Outside of for loop, compare score. Score is already incremented in playRound
+    // Declare winner (or tie)
+    if (computerScore > humanScore) {
+        console.log("You lost :(")
+    } else if (computerScore < humanScore) {
+        console.log("You won! :)")
+    } else {
+        console.log("You tied.")
+    }
 }
