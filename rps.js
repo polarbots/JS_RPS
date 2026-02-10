@@ -86,8 +86,9 @@ function playRound(computerChoice, humanChoice) {
 
     const runningScore = document.createElement('p');
     const announceWinner = document.createElement('p');
+    const playAgain = document.createElement('p');
     // If statement to check if either score is 5
-    // If one party reaches 5, print winner
+    // If one party reaches 5, print winner and disable buttons from further presses
     if (computerScore == 5 || humanScore == 5) {
         if (computerScore > humanScore) {
             announceWinner.textContent = `You lost with a score of ${humanScore} to ${computerScore} :(`;
@@ -95,6 +96,13 @@ function playRound(computerChoice, humanChoice) {
             announceWinner.textContent = `You won with a score of ${humanScore} to ${computerScore}! :)`;
         }
         resultsDiv.appendChild(announceWinner);
+        playAgain.textContent = `Refresh to play again!`;
+        resultsDiv.appendChild(playAgain);
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.disabled = true;
+        })
+
     } else {
         // If none are 5, print out running score
         runningScore.textContent = `Human (You): ${humanScore} Computer: ${computerScore}`;
